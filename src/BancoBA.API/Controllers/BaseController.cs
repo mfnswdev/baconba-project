@@ -1,3 +1,5 @@
+using BaconBA.Shared.Enums;
+using BaconBA.Shared.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using OperationResult;
@@ -34,12 +36,12 @@ public class BaseController : ControllerBase
         }
         else
         {
-            // Se a exceção não for do tipo ExcecaoAplicacao, retorna um erro genérico
+            // Se a exceï¿½ï¿½o nï¿½o for do tipo ExcecaoAplicacao, retorna um erro genï¿½rico
             return BadRequest(FormatErrorMessage(AnaliseMensagemErro.Generico));
         }
     }
 
-    private ResultadoErro FormatErrorMessage(ResultadoErro responseErro, IEnumerable<string>? errors = null)
+    private ErrorResult FormatErrorMessage(ErrorResult responseErro, IEnumerable<string>? errors = null)
     {
         if (errors != null)
         {
