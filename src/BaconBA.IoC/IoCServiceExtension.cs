@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Caching.Distributed;
+using BaconBA.Domain;
 
 
 
@@ -26,6 +27,7 @@ namespace BaconBA.IoC
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ExceptionPipeline<,>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(BehaviorValidation<,>));
             ConfigurarFluentValidation(services);
+            services.AddScoped<IAnimalRepository, AnimalRepository>();
 
 
 
@@ -65,7 +67,7 @@ namespace BaconBA.IoC
         {
             services.AddDbContext<ApplicationDbContext>((sp, options) =>
             {
-                options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlite("Data Source=baconba.db");
                 //options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 

@@ -10,7 +10,6 @@ public class AnimalEntityTypeConfiguration : IEntityTypeConfiguration<AnimalEnti
     {
         builder.ToTable("Animals");
         builder.HasKey(c => c.Id);
-        builder.HasIndex(c => c.Eartag).IsUnique();
         builder.Property(c => c.Eartag).IsRequired().HasMaxLength(6);
         builder.Property(c => c.GenitorEartag).IsRequired().HasMaxLength(6);
         builder.Property(c => c.MatriarchEartag).IsRequired().HasMaxLength(6);
@@ -18,5 +17,6 @@ public class AnimalEntityTypeConfiguration : IEntityTypeConfiguration<AnimalEnti
         builder.Property(c => c.CheckoutDate);
         builder.Property(c => c.Status).IsRequired();
         builder.Property(c => c.Gender).IsRequired();
+        builder.HasIndex(c => c.Eartag).IsUnique();
     }
 }
