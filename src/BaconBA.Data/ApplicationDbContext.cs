@@ -9,7 +9,7 @@ namespace BaconBA.Data;
 [ExcludeFromCodeCoverage]
 public class ApplicationDbContext : DbContext
 {
-    public DbSet<AnimalEntity> Animals { get; set; } = null!;
+    public DbSet<AnimalEntity> Animals { get; set; } = default!;
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : base(options)
     {
