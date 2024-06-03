@@ -3,7 +3,4 @@ using OperationResult;
 
 namespace BaconBA.Shared;
 
-public class GetAnimalsRequest : IRequest<Result<GetAnimalsResponse>>
-{
-    
-}
+public class GetAnimalsRequest : IRequest<Result<GetAnimalsResponse>> { };

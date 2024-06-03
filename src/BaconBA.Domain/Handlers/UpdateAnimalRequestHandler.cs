@@ -17,7 +17,7 @@ public class UpdateAnimalRequestHandler : IRequestHandler<UpdateAnimalRequest, R
     }
     public async Task<Result<UpdateAnimalResponse>> Handle(UpdateAnimalRequest request, CancellationToken cancellationToken)
     {
-        var response = await _animalRepository.GetAnimalAsync(request.Eartag);
+        var response = await _animalRepository.GetAnimalAsync(request.EartagInitial);
         if (response == null)
         {
             return Result.Error<UpdateAnimalResponse>(new Exception("Animal not found"));

@@ -18,15 +18,32 @@ public class GetAnimalsRequestHandler : IRequestHandler<GetAnimalsRequest, Resul
     public async Task<Result<GetAnimalsResponse>> Handle(GetAnimalsRequest request, CancellationToken cancellationToken)
     {
         var response = await _animalRepository.GetAnimalsAsync();
-        if (response == null)
+
+        if (response == null || !response.Any())
         {
             return Result.Error<GetAnimalsResponse>(new Exception("Animals not found"));
         }
-        else
+
+        var convertedResponse = new GetAnimalsResponse
         {
-            var convertedResponse = new GetAnimalsResponse();
-            response.ForEach(x => convertedResponse.Animals.Add(new GetAnimalResponse() { Eartag = x.Eartag, BirthDate = x.BirthDate, Status = x.Status, Gender = x.Gender }));
-            return Result.Success(convertedResponse);
+            Animals = new List<GetAnimalResponse>()
+        };
+
+        foreach (var animal in response)
+        {
+            if (animal != null)
+            {
+                convertedResponse.Animals.Add(new GetAnimalResponse
+                {
+                    Eartag = animal.Eartag,
+                    BirthDate = animal.BirthDate,
+                    Status = animal.Status,
+                    Gender = animal.Gender
+                });
+            }
         }
+
+        return Result.Success(convertedResponse);
     }
+
 }

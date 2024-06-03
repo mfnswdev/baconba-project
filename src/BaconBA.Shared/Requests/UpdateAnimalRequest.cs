@@ -5,6 +5,7 @@ namespace BaconBA.Shared;
 
 public class UpdateAnimalRequest : IRequest<Result<UpdateAnimalResponse>>
 {
+    public string EartagInitial { get; set; } = default!;
     public string Eartag { get; set; } = default!;
 
     public string GenitorEartag { get; set; } = default!;

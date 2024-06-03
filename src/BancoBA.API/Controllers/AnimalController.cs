@@ -41,7 +41,8 @@ public class AnimalController : BaseController
     [HttpGet("All")]
     [ProducesResponseType(typeof(GetAnimalsResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResult), StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<GetAnimalsResponse>> GetAnimalsAsync(GetAnimalsRequest request) => await SendCommand(request);
+    public async Task<ActionResult<GetAnimalsResponse>> GetAnimalsAsync(
+        [FromHeader] GetAnimalsRequest request) => await SendCommand(request);
 
 
 
