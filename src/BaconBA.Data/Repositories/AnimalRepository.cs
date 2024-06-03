@@ -6,13 +6,14 @@ namespace BaconBA.Data;
 public class AnimalRepository : IAnimalRepository
 {
     private readonly ApplicationDbContext _context;
-    public AnimalRepository(ApplicationDbContext context){
+    public AnimalRepository(ApplicationDbContext context)
+    {
         _context = context;
     }
     public async Task<AnimalEntity> AddAnimalAsync(AnimalEntity animal)
     {
         _context.Animals.Add(animal);
-        _context.SaveChanges();
+         _context.SaveChanges();
         return animal;
     }
 
@@ -20,9 +21,12 @@ public class AnimalRepository : IAnimalRepository
     {
         var animal = await GetAnimalAsync(eartag);
 
-        if (animal == null){
-            return null;
-        } else {
+        if (animal == null)
+        {
+            return null!;
+        }
+        else
+        {
             _context.Animals.Remove(animal);
             _context.SaveChanges();
             return animal;
@@ -36,16 +40,27 @@ public class AnimalRepository : IAnimalRepository
 
     public async Task<AnimalEntity> GetAnimalAsync(string eartag)
     {
-        return await _context.Animals.Where(e => e.Eartag == eartag).FirstOrDefaultAsync();
+        var response = await _context.Animals.Where(e => e.Eartag == eartag).FirstOrDefaultAsync();
+        if (response == null)
+        {
+            return null!;
+        }
+        else
+        {
+            return response;
+        }
     }
 
     public async Task<AnimalEntity> UpdateAnimalAsync(AnimalEntity animal)
     {
         var animalEntity = await GetAnimalAsync(animal.Eartag);
 
-        if (animal == null){
+        if (animalEntity == null)
+        {
             return null!;
-    } else {
+        }
+        else
+        {
             _context.Animals.Update(animal);
             _context.SaveChanges();
             return animal;

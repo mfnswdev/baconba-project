@@ -17,4 +17,8 @@
     <ProjectReference Include="..\BaconBA.Shared\BaconBA.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Handlers\AnimalHandlers\" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
-﻿using BaconBA.Shared;
+﻿using BaconBA.Shared.Requests;
+using BaconBA.Shared.Responses;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using OperationResult;
@@ -9,7 +10,8 @@ public class CreateAnimalRequestHandler : IRequestHandler<CreateAnimalRequest, R
 {
     private readonly IAnimalRepository _animalRepository;
     private readonly ILogger<CreateAnimalRequestHandler> _logger;
-    public CreateAnimalRequestHandler(IAnimalRepository animalRepository, ILogger<CreateAnimalRequestHandler> logger){
+    public CreateAnimalRequestHandler(IAnimalRepository animalRepository, ILogger<CreateAnimalRequestHandler> logger)
+    {
         _animalRepository = animalRepository;
         _logger = logger;
     }
@@ -25,11 +27,14 @@ public class CreateAnimalRequestHandler : IRequestHandler<CreateAnimalRequest, R
             Status = request.Status,
             Gender = request.Gender
         };
-        
+
         var response = await _animalRepository.AddAnimalAsync(animalEntity);
-        if (response == null){
+        if (response == null)
+        {
             return Result.Error<CreateAnimalResponse>(new Exception("Animal not created"));
-        } else {
+        }
+        else
+        {
             return Result.Success<CreateAnimalResponse>(new CreateAnimalResponse
             {
                 Eartag = response.Eartag,

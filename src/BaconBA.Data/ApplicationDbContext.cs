@@ -10,6 +10,7 @@ namespace BaconBA.Data;
 public class ApplicationDbContext : DbContext
 {
     public DbSet<AnimalEntity> Animals { get; set; } = default!;
+    public DbSet<Weight> Weights { get; set; } = default!;
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : base(options)
     {

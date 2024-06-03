@@ -1,4 +1,4 @@
-﻿namespace BaconBA.Shared;
+﻿namespace BaconBA.Shared.Responses;
 
 public record GetAnimalsResponse
 {

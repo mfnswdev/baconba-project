@@ -1,4 +1,6 @@
 ﻿using BaconBA.Shared;
+using BaconBA.Shared.Requests;
+using BaconBA.Shared.Responses;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using OperationResult;
