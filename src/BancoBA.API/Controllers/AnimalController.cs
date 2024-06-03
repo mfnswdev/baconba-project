@@ -4,7 +4,7 @@ using Cepedi.Banco.Analise.Api.Controllers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BancoBA.API;
+namespace BaconBA.API;
 
 [ApiController]
 [Route("v1/[controller]")]
