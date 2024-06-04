@@ -1,6 +1,8 @@
-﻿using BaconBA.Shared;
+﻿using BaconBA.API.Controllers;
+using BaconBA.Shared;
 using BaconBA.Shared.Exceptions;
-using Cepedi.Banco.Analise.Api.Controllers;
+using BaconBA.Shared.Requests;
+using BaconBA.Shared.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

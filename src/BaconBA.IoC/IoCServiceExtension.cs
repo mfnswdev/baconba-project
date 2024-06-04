@@ -28,6 +28,7 @@ namespace BaconBA.IoC
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(BehaviorValidation<,>));
             ConfigurarFluentValidation(services);
             services.AddScoped<IAnimalRepository, AnimalRepository>();
+            services.AddScoped<IWeightRepository, WeightRepository>();
 
 
 

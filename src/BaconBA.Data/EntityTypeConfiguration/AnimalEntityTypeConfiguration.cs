@@ -18,5 +18,10 @@ public class AnimalEntityTypeConfiguration : IEntityTypeConfiguration<AnimalEnti
         builder.Property(c => c.Status).IsRequired();
         builder.Property(c => c.Gender).IsRequired();
         builder.HasIndex(c => c.Eartag).IsUnique();
+
+          builder.HasMany(c => c.Weights)
+                   .WithOne(w => w.Animal)
+                   .HasForeignKey(w => w.AnimalId)
+                   .OnDelete(DeleteBehavior.Cascade);
     }
 }

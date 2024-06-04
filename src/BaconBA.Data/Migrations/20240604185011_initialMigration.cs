@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BaconBA.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class initialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,24 +31,24 @@ namespace BaconBA.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WeightEntity",
+                name: "Weights",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     AnimalId = table.Column<int>(type: "INTEGER", nullable: false),
-                    WeightDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    WeightValue = table.Column<double>(type: "REAL", nullable: false),
-                    AnimalEntityId = table.Column<int>(type: "INTEGER", nullable: true)
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    WeightValue = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WeightEntity", x => x.Id);
+                    table.PrimaryKey("PK_Weights", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_WeightEntity_Animals_AnimalEntityId",
-                        column: x => x.AnimalEntityId,
+                        name: "FK_Weights_Animals_AnimalId",
+                        column: x => x.AnimalId,
                         principalTable: "Animals",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -58,16 +58,16 @@ namespace BaconBA.Data.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_WeightEntity_AnimalEntityId",
-                table: "WeightEntity",
-                column: "AnimalEntityId");
+                name: "IX_Weights_AnimalId",
+                table: "Weights",
+                column: "AnimalId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "WeightEntity");
+                name: "Weights");
 
             migrationBuilder.DropTable(
                 name: "Animals");

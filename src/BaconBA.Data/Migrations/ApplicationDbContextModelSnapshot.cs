@@ -60,19 +60,16 @@ namespace BaconBA.Data.Migrations
                     b.ToTable("Animals", (string)null);
                 });
 
-            modelBuilder.Entity("BaconBA.Domain.WeightEntity", b =>
+            modelBuilder.Entity("BaconBA.Domain.Weight", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AnimalEntityId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("AnimalId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("WeightDate")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
                     b.Property<double>("WeightValue")
@@ -80,16 +77,20 @@ namespace BaconBA.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AnimalEntityId");
+                    b.HasIndex("AnimalId");
 
-                    b.ToTable("WeightEntity");
+                    b.ToTable("Weights", (string)null);
                 });
 
-            modelBuilder.Entity("BaconBA.Domain.WeightEntity", b =>
+            modelBuilder.Entity("BaconBA.Domain.Weight", b =>
                 {
-                    b.HasOne("BaconBA.Domain.AnimalEntity", null)
+                    b.HasOne("BaconBA.Domain.AnimalEntity", "Animal")
                         .WithMany("Weights")
-                        .HasForeignKey("AnimalEntityId");
+                        .HasForeignKey("AnimalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Animal");
                 });
 
             modelBuilder.Entity("BaconBA.Domain.AnimalEntity", b =>

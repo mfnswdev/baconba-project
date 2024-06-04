@@ -46,7 +46,7 @@ public class WeightRepository : IWeightRepository
 
     public async Task<List<Weight>> GetWeightsAsync(string eartag)
     {
-        var response = await _context.Weights.Where(w => w.Eartag == eartag).ToListAsync();
+        var response = await _context.Weights.Where(w => w.Animal.Eartag == eartag).ToListAsync();
         if (response == null)
         {
             return null!;

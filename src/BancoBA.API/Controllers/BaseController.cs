@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using OperationResult;
 
-namespace Cepedi.Banco.Analise.Api.Controllers;
+namespace BaconBA.API.Controllers;
 public class BaseController : ControllerBase
 {
     private readonly IMediator _mediator;

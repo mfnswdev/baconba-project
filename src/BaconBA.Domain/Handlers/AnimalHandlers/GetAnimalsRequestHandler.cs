@@ -5,7 +5,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 
-namespace BaconBA.Domain;
+namespace BaconBA.Domain.Handlers;
 
 public class GetAnimalsRequestHandler : IRequestHandler<GetAnimalsRequest, Result<GetAnimalsResponse>>
 {
